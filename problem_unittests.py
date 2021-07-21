@@ -21,7 +21,7 @@ def test_discriminator(Discriminator):
     D = Discriminator(conv_dim)
 
     # create random image input
-    x = torch.from_numpy(np.random.randint(1, size=(batch_size, 3, 32, 32))*2 -1).float()
+    x = torch.from_numpy(np.random.randint(1, size=(batch_size, 3, 64, 64))*2 -1).float()
     
     train_on_gpu = torch.cuda.is_available()
     if train_on_gpu:
@@ -63,7 +63,7 @@ def test_generator(Generator):
         'Batch Size': batch_size,
         'Input': z})
 
-    correct_output_size = (batch_size, 3, 32, 32)
+    correct_output_size = (batch_size, 3, 64, 64)
     assert_condition = output.size() == correct_output_size
     assert_message = 'Wrong output size. Expected type {}. Got type {}'.format(correct_output_size, output.size())
     assert_test.test(assert_condition, assert_message)
